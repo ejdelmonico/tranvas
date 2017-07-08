@@ -22,4 +22,9 @@ class EventController extends Controller
 
         return view('events.event-list', compact(['upcomingEvents', 'pastEvents']));
     }
+
+    public function view(Event $event)
+    {
+        return view('events.event-view', compact('event'));
+    }
 }

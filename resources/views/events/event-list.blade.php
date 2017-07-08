@@ -11,7 +11,9 @@
                 @foreach($upcomingEvents as $upcomingEvent)
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3>{{ $upcomingEvent->title }}</h3>
+                            <h3>
+                                <a href="{{route('event-view', $upcomingEvent->id)}}">{{ $upcomingEvent->id }} {{ $upcomingEvent->title }}</a>
+                            </h3>
                             <small class="padding-left-10">{{ $upcomingEvent->address }}</small>
                         </div>
 
@@ -44,7 +46,9 @@
                     @foreach($pastEvents as $pastEvent)
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h3>{{ $pastEvent->title }}</h3>
+                                <h3>
+                                    <a href="{{route('event-view', $pastEvent->id)}}">{{ $pastEvent->id }} {{ $pastEvent->title }}</a>
+                                </h3>
                                 <small class="padding-left-10">{{ $pastEvent->address }}</small>
                             </div>
 
