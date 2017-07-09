@@ -1,4 +1,3 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -15,8 +14,18 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+import * as VueGoogleMaps from 'vue2-google-maps';
+
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: 'AIzaSyC_d53S5N2B1yuGoxgdFhOBRdK2B1D_HJY',
+    libraries: 'places'
+  }
+});
+
 Vue.component('example', require('./components/Example.vue'));
+Vue.component('event-location', require('./components/EventLocation.vue'));
 
 const app = new Vue({
-    el: '#app'
+  el: '#app'
 });

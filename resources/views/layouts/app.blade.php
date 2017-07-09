@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Tranvas') }}</title>
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -25,17 +25,16 @@
     @stack('styles')
 </head>
 <body>
-<div id="app">
-    @include('layouts.nav')
+    <div id="app">
+        @include('partials.nav')
 
-    @yield('content')
+        @yield('content')
 
-    {{--<flash message="{{ session('flash') }}"></flash>--}}
-</div>
+        {{--<flash message="{{ session('flash') }}"></flash>--}}
+    </div>
 
-<!-- Scripts -->
-<script src="{{ asset('js/app.js') }}"></script>
-@stack('scripts')
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}"></script>
+    @stack('scripts')
 </body>
 </html>
-

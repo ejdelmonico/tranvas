@@ -6,6 +6,7 @@ use App\Modules\Event\Event;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class EventController extends Controller
 {
@@ -26,5 +27,43 @@ class EventController extends Controller
     public function view(Event $event)
     {
         return view('events.event-view', compact('event'));
+    }
+
+    public function add()
+    {
+        return view('events.event-add');
+    }
+
+    public function store(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|max:255',
+            'description' => 'required|min:3',
+            'address' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required',
+            'lat' => 'required',
+            'lng' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        Event::create([
+            'title' => $request->input('title'),
+            'description' => $request->input('description'),
+            'address' => $request->input('address'),
+            'start_date' => $request->input('start_date'),
+            'end_date' => $request->input('end_date'),
+            'lat' => $request->input('lat'),
+            'long' => $request->input('lng'),
+            'user_id' => $request->user()->id
+        ]);
+
+        return redirect('/events');
     }
 }
