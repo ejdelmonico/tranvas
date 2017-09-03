@@ -13,7 +13,8 @@
                         </div>
                         <div class="panel-body">
                             {{ csrf_field() }}
-                            <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}"><label for="title">Event title</label>
+                            <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}"><label for="title">Event
+                                    title</label>
                                 <input type="text"
                                        name="title"
                                        id="title"
@@ -111,3 +112,10 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script src="//cdn.ckeditor.com/4.7.1/standard/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('description');
+    </script>
+@endpush

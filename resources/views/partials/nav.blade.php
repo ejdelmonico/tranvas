@@ -23,7 +23,9 @@
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
                 @if(! Auth::guest())
-                    <li class="{{Request::is('events*') ? 'active' : ''}}"><a href="{{ route('events') }}">Events</a></li>
+                    <li class="{{Request::is('events*') ? 'active' : ''}}">
+                        <a href="{{ route('events') }}">Events</a>
+                    </li>
                 @endif
             </ul>
 
@@ -35,7 +37,11 @@
                     <li><a href="{{ route('register') }}">Register</a></li>
                 @else
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        <a href="#"
+                           class="dropdown-toggle"
+                           data-toggle="dropdown"
+                           role="button"
+                           aria-expanded="false">
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
 

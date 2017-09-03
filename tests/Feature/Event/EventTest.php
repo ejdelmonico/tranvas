@@ -12,8 +12,6 @@ class EventTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-
-
     }
 
     /** @test */
@@ -38,7 +36,7 @@ class EventTest extends TestCase
         $this->get(route('events'))
             ->assertStatus(200)
             ->assertSeeText($event->title)
-            ->assertSeeText($event->description);
+            ->assertSeeText(limit_words($event->description, 50));
     }
 
     /** @test */
@@ -48,9 +46,43 @@ class EventTest extends TestCase
         $this->signIn();
         $event = create('App\Modules\Event\Event');
 
-        $this->get(route('event-view', $event->id))
+        $this->get(route('event-view', $event->slug))
             ->assertSee($event->title)
             ->assertSee($event->description)
             ->assertSee($event->creator->name);
     }
+
+    /** @test */
+    // @codingStandardsIgnoreLine
+    public function a_user_can_create_an_event_and_view_it()
+    {
+        $this->signIn();
+
+        $event = create('App\Modules\Event\Event');
+
+        $this->post(route('event-save'), $event->toArray());
+
+        $this->get(route('events'))
+            ->assertSee($event->title);
+    }
+
+    /** @test */
+    // @codingStandardsIgnoreLine
+    public function confirm_fields_are_required_to_create_event()
+    {
+        $this->signIn();
+
+        $this->post(route('event-save'), [])
+            ->assertSessionHasErrors([
+                'title',
+                'description',
+                'address',
+                'start_date',
+                'end_date',
+                'lat',
+                'lng'
+            ]);
+    }
+
+
 }

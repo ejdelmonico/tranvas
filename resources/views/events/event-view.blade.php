@@ -19,8 +19,8 @@
                     <div class="panel-heading">
                         <h3>{{ $event->title }}</h3>
                     </div>
-                    <div class="panel-body">
-                        <p><strong>Description: </strong>{{ $event->description }}</p>
+                    <div class="panel-body content">
+                        <p><strong>Description: </strong>{!! $event->description !!}</p>
                     </div>
 
                     <div id="map"></div>

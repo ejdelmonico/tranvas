@@ -39,6 +39,8 @@ class LoginController extends Controller
     }
 
     /**
+     * Override the credential method for login
+     *
      * @param \Illuminate\Http\Request $request
      * @return array
      */

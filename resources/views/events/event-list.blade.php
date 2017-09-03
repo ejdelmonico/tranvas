@@ -12,7 +12,7 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h3>
-                                <a href="{{route('event-view', $upcomingEvent->id)}}">{{ $upcomingEvent->id }} {{ $upcomingEvent->title }}</a>
+                                <a href="{{route('event-view', $upcomingEvent->slug)}}">{{ $upcomingEvent->id }} {{ $upcomingEvent->title }}</a>
                             </h3>
                             <small class="padding-left-10">{{ $upcomingEvent->address }}</small>
                         </div>
@@ -26,7 +26,7 @@
                                 <strong>Created by: </strong> {{ $upcomingEvent->creator->name }}
                             </div>
                             <div class="description">
-                                {{ $upcomingEvent->description }}
+                                {!! limit_words($upcomingEvent->description, 50) !!}
                             </div>
 
                         </div>
@@ -47,7 +47,7 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h3>
-                                    <a href="{{route('event-view', $pastEvent->id)}}">{{ $pastEvent->id }} {{ $pastEvent->title }}</a>
+                                    <a href="{{route('event-view', $pastEvent->slug)}}">{{ $pastEvent->id }} {{ $pastEvent->title }}</a>
                                 </h3>
                                 <small class="padding-left-10">{{ $pastEvent->address }}</small>
                             </div>
@@ -61,7 +61,7 @@
                                     <strong>Created by: </strong> {{ $pastEvent->creator->name }}
                                 </div>
                                 <div class="description">
-                                    {{ $pastEvent->description }}
+                                    {!! limit_words($pastEvent->description, 50) !!}
                                 </div>
 
                             </div>
